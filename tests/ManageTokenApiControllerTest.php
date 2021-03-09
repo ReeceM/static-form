@@ -5,14 +5,12 @@ namespace Tests\Feature\Http\Middleware;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Orchestra\Testbench\Concerns\HandlesRoutes;
 use ReeceM\StaticForm\StaticForm;
 use ReeceM\StaticForm\Tests\Models\User;
 use ReeceM\StaticForm\Tests\TestCase;
 
 class ManageTokenApiControllerTest extends TestCase
 {
-    use HandlesRoutes;
     public function setUp(): void
     {
         parent::setUp();
