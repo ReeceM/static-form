@@ -1,8 +1,9 @@
 # Handle static form submissions and other static site things in Laravel app
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/reecem/static-form.svg?style=flat-square)](https://packagist.org/packages/reecem/static-form)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/reecem/static-form/run-tests?label=tests)](https://github.com/reecem/static-form/actions?query=workflow%3ATests+branch%3Amaster)
+[![PHPUnit Tests](https://github.com/ReeceM/static-form/actions/workflows/run-tests.yml/badge.svg)](https://github.com/ReeceM/static-form/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/reecem/static-form.svg?style=flat-square)](https://packagist.org/packages/reecem/static-form)
+[![Styling](https://github.com/ReeceM/static-form/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/ReeceM/static-form/actions/workflows/php-cs-fixer.yml)
 
 [![](https://banners.beyondco.de/Static%20Form.png?theme=dark&packageManager=composer+require&packageName=reecem%2Fstatic-form&pattern=xEquals&style=style_2&description=Handle+Static+Site+forms+submissions+inside+your+Laravel+App&md=1&showWatermark=1&fontSize=100px&images=mail&widths=700&heights=400)](https://github.com/reecem/static-from#readme)
 
