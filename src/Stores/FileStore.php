@@ -45,7 +45,7 @@ class FileStore implements StaticKeyStore
     public function put(string $hash): bool
     {
         return $this->filesystem->put($this->path(), json_encode([
-            'token' => $hash
+            'token' => $hash,
         ]));
     }
 

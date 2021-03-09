@@ -15,7 +15,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            function(string $modelName)  {
+            function (string $modelName) {
                 return 'ReeceM\\StaticForm\\Database\\Factories\\'.class_basename($modelName).'Factory';
             }
         );
@@ -40,7 +40,7 @@ class TestCase extends Orchestra
 
         $app['config']->set('auth.providers.users.model', User::class);
 
-        if (!Schema::hasTable('users')) {
+        if (! Schema::hasTable('users')) {
             include_once __DIR__.'/database/migrations/0000_00_00_000000_create_package_test_table.php';
             (new \CreatePackageTestTable())->up();
         }

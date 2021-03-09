@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Http\Middleware;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;

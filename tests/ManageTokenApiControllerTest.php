@@ -23,7 +23,7 @@ class ManageTokenApiControllerTest extends TestCase
 
         Gate::define('manageFormTokens', function ($user) {
             return in_array($user->email, [
-                'reece@reecemay.me'
+                'reece@reecemay.me',
             ]);
         });
     }
