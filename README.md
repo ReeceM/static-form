@@ -105,7 +105,65 @@ On your static site, you can have your contact form. The way of handling the for
 
 So for Vercel apps, you can create a new file under the `api` directory.
 
-You can try a simple form:
+For the API part of the code:
+
+```javascript
+// api/contactus.js
+
+/**
+ * Create a contact request to the main server.
+ *
+ * @param {http.IncomingMessage} req
+ * @param {*} res
+ */
+import { APP_TOKEN, APP_URL } from "../../../lib/constants"
+
+export default async function contactus(req, res) {
+
+  if (req.method !== 'POST') {
+    return res.status(400);
+  }
+
+  if (req.body?.website) {
+    return res.status(200);
+  }
+
+  let body = JSON.parse(req.body)
+  let {_token, xsrf} = body.token;
+  delete body.token
+
+  const request = await fetch(
+    `${APP_URL}/api/static-form/contactus`,
+    {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'X-STATIC-FORM': APP_TOKEN,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        "x-requested-with": "XMLHttpRequest",
+      },
+    }
+  )
+
+  if (request.status !== 201 ) {
+    let json = await request.json()
+
+    throw new Error(json.message || 'Failed to fetch API');
+  }
+
+  const json = await request.json()
+
+  if (json.errors) {
+    console.error(json.errors)
+    throw new Error('Failed to fetch API, json errors')
+  }
+
+  return res.status(201).json(json.data ?? {});
+}
+```
+
+You can try a simple form layout for the frontend:
 
 ```jsx
 import React, { useCallback, useEffect, useRef, useState } from 'react'
@@ -113,9 +171,15 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 const ContactUs = () => {
     const [contactName, setContactName] = useState('')
     const [contactEmail, setContactEmail] = useState('')
+    const [honey, setHoney] = useState('')
 
     function handleForm(e) {
         e.preventDefault()
+
+        if (honey.length >= 1) {
+            return
+        }
+
         let body = {
             name: contactName,
             email: contactEmail,
@@ -158,10 +222,10 @@ const ContactUs = () => {
                         value={contactEmail}
                         onChange={e => setContactEmail(e.target.value)}
                         placeholder="Your email"
-                        type="text"
+                        type="email"
                     />
                 </div>
-                <input style={{display: 'none'}} name="website"> <!-- The honeypot field -->
+                <input style={{display: 'none'}} name="website" value={honey} onChange={e => setHoney(e.target.value)}> <!-- The honeypot field -->
                 <button type="submit">Submit</button>
             </form>
         </>
