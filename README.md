@@ -49,6 +49,9 @@ return [
 
 ## Usage
 
+As an overview, the usage of the current version is that you can use the packages middleware on controllers that you define, this will then use your controller to handle the request data.
+
+### Create The Token
 The first step is to generate your token, to do that you can use the console command:
 
 ```bash
@@ -80,6 +83,94 @@ The response for creating a token would be the following JSON with a 201 status:
 ```
 
 - [ ] Make a plugin UI, just deciding on if it should be in package or a separate snippet.
+
+### Use the Middleware
+
+To use the middleware, you can define a route using the config file, I do suggest that you use the API endpoint, this is as it is stateless and also would not require the CSRF token.
+
+```php
+// routes/api.php
+
+Route::group([
+    'middleware' => config('static-form.middleware.forms'),
+], function () {
+    // A controller that you have created.
+    Route::post('/contact', StaticContactController::class)->name('contact.create');
+});
+```
+
+### Submitting Forms
+
+On your static site, you can have your contact form. The way of handling the form is done using the API part of the hosting provider.
+
+So for Vercel apps, you can create a new file under the `api` directory.
+
+You can try a simple form:
+
+```jsx
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+
+const ContactUs = () => {
+    const [contactName, setContactName] = useState('')
+    const [contactEmail, setContactEmail] = useState('')
+
+    function handleForm(e) {
+        e.preventDefault()
+        let body = {
+            name: contactName,
+            email: contactEmail,
+        }
+
+        fetch(
+            `${location.origin}/api/contactus`,
+            {
+                method: 'POST',
+                body: JSON.stringify(body)
+            }
+        )
+        .then(response => {
+            console.debug(response);
+        })
+        .catch(error => {
+            console.error(error)
+        })
+    }
+
+    return (
+        <>
+            <form onSubmit={handleForm}>
+                <div style={{marginBottom: '0.75rem'}}>
+                    <label htmlFor="name">Name</label>
+                    <input 
+                        name="name" 
+                        id="name"
+                        value={contactName}
+                        onChange={e => setContactName(e.target.value)}
+                        placeholder="Your Name"
+                        type="text"
+                    />
+                </div>
+                <div style={{marginBottom: '0.75rem'}}>
+                    <label htmlFor="email">Email</label>
+                    <input 
+                        name="email" 
+                        id="email"
+                        value={contactEmail}
+                        onChange={e => setContactEmail(e.target.value)}
+                        placeholder="Your email"
+                        type="text"
+                    />
+                </div>
+                <input style={{display: 'none'}} name="website"> <!-- The honeypot field -->
+                <button type="submit">Submit</button>
+            </form>
+        </>
+    )
+}
+
+export default ContactUs;
+
+```
 
 ## Testing
 
