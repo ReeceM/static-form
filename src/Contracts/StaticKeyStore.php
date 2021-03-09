@@ -15,7 +15,7 @@ interface StaticKeyStore
      * Puts the static site key hash into storage
      *
      * @param string $hash
-     * @return void
+     * @return bool
      */
     public function put(string $hash): bool;
 

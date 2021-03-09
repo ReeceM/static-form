@@ -25,6 +25,7 @@ class StaticFormServiceProvider extends ServiceProvider
             ], 'static-form-provider');
         }
 
+        $this->bootRoutes();
         /*
          * Optional methods to load up in the future.. offering a database instance
          */
@@ -44,7 +45,7 @@ class StaticFormServiceProvider extends ServiceProvider
             return new StaticForm;
         });
 
-         $this->app->bind(
+        $this->app->bind(
             \ReeceM\StaticForm\Contracts\StaticKeyStore::class,
             function () {
                 $disk = config('static-form.storage.disk');
@@ -55,7 +56,7 @@ class StaticFormServiceProvider extends ServiceProvider
 
         // Registering package commands.
         $this->commands([
-            StaticFormCommand::class
+            StaticFormCommand::class,
         ]);
     }
 

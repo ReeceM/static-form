@@ -17,9 +17,9 @@ class CoreTest extends TestCase
 
         $this->assertNotNull($plainToken);
 
-        $this->assertNotNull(app(StaticKeyStore::class)->get(), "Static Key Store did not return value for get method");
+        $this->assertNotNull(app()->make(StaticKeyStore::class)->get(), "Static Key Store did not return value for get method");
         $this->assertTrue(hash_equals(
-            app(StaticKeyStore::class)->get(),
+            app()->make(StaticKeyStore::class)->get(),
             hash('sha256', $plainToken)
         ));
 

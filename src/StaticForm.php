@@ -19,7 +19,7 @@ class StaticForm
 
     public function handle($form, Request $request)
     {
-        if (!isset($this->customHandlers[$form])) {
+        if (! isset($this->customHandlers[$form])) {
             SubmissionAccepted::dispatch($request->all());
 
             return null;
@@ -35,7 +35,7 @@ class StaticForm
      *
      * @param string $form
      * @param  \Closure  $callback
-     * @return void
+     * @return \ReeceM\StaticForm\StaticForm
      */
     public function define(string $form, Closure $callback)
     {

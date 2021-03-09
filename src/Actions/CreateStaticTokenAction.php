@@ -11,7 +11,7 @@ class CreateStaticTokenAction
     {
         $token = hash('sha256', $textToken = Str::random(40));
 
-        app(StaticKeyStore::class)
+        app()->make(StaticKeyStore::class)
             ->put($token);
 
         return $textToken;

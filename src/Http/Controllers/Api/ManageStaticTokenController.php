@@ -31,7 +31,7 @@ class ManageStaticTokenController
 
         return new JsonResponse([
             'plain_token' => $plainText,
-            'message' => 'Token Created, please keep this as it is available once'
+            'message' => 'Token Created, please keep this as it is available once',
         ], 201);
     }
 }

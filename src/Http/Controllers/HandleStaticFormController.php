@@ -17,10 +17,10 @@ class HandleStaticFormController
          */
         return new JsonResponse(['error' => 'Feature Not Implemented'], Response::HTTP_NOT_IMPLEMENTED);
 
-        $response = StaticFormFacade::handle($form, $request);
+        // $response = StaticFormFacade::handle($form, $request);
 
-        return is_null($response)
-            ? new JsonResponse(['message' => 'accepted'], 200)
-            : $response;
+        // return is_null($response)
+        //     ? new JsonResponse(['message' => 'accepted'], 200)
+        //     : $response;
     }
 }

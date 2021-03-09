@@ -1,5 +1,3 @@
-# Handle static form submissions and other static site things in Laravel app
-
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/reecem/static-form.svg?style=flat-square)](https://packagist.org/packages/reecem/static-form)
 [![PHPUnit Tests](https://github.com/ReeceM/static-form/actions/workflows/run-tests.yml/badge.svg)](https://github.com/ReeceM/static-form/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/reecem/static-form.svg?style=flat-square)](https://packagist.org/packages/reecem/static-form)
@@ -244,18 +242,6 @@ Testing is currently a work in progress, there are some :), I am manually testin
 ```bash
 composer test
 ```
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Credits
 
