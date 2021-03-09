@@ -5,6 +5,7 @@ namespace ReeceM\StaticForm;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
+use ReeceM\StaticForm\Commands\InstallCommand;
 use ReeceM\StaticForm\Commands\StaticFormCommand;
 use ReeceM\StaticForm\Stores\FileStore;
 
@@ -57,6 +58,7 @@ class StaticFormServiceProvider extends ServiceProvider
         // Registering package commands.
         $this->commands([
             StaticFormCommand::class,
+            InstallCommand::class,
         ]);
     }
 
