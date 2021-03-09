@@ -19,7 +19,7 @@ class StaticForm
 
     public function handle($form, Request $request)
     {
-        if (!isset($this->customHandlers[$form])) {
+        if (! isset($this->customHandlers[$form])) {
             SubmissionAccepted::dispatch($request->all());
 
             return null;

@@ -20,14 +20,14 @@ class InstallCommand extends Command
         if ($this->option('provider')) {
             $result = $this->call('vendor:publish', [
                 '--provider' => "ReeceM\StaticForm\StaticFormServiceProvider",
-                '--tag' => 'static-form-provider'
+                '--tag' => 'static-form-provider',
             ]);
         }
 
         if ($this->option('config')) {
             $result = $this->call('vendor:publish', [
                 '--provider' => "ReeceM\StaticForm\StaticFormServiceProvider",
-                '--tag' => 'static-form-config'
+                '--tag' => 'static-form-config',
             ]);
         }
 

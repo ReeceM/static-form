@@ -20,7 +20,6 @@ class ValidStaticSiteKey
     public function handle($request, Closure $next)
     {
         if (! $request->hasHeader(config('static-form.header'))) {
-
             ValidationFailed::dispatch(['request' => $request->all()]);
 
             return $request->expectsJson()
