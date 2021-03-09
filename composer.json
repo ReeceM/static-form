@@ -8,12 +8,14 @@
         "static forms",
         "static site forms"
     ],
-    "homepage": "https://github.com/reecem/static-form",
+    "homepage": "https://static-form.laravelpkg.dev",
+    "readme": "https://github.com/reecem/static-form",
     "license": "MIT",
     "authors": [
         {
             "name": "ReeceM",
             "email": "reecestevenmay@gmail.com",
+            "homepage": "https://reecemay.me",
             "role": "Developer"
         }
     ],
@@ -53,6 +55,11 @@
                 "StaticForm": "ReeceM\\StaticForm\\StaticFormFacade"
             }
         }
+    },
+    "support": {
+        "docs": "https://static-form.laravelpkg.dev",
+        "forum": "https://github.com/ReeceM/static-form/discussions",
+        "issues": "https://github.com/ReeceM/static-form/issues"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

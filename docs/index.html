@@ -34,7 +34,7 @@
 </head>
 
 <body>
-    <div id="h-bar" style="position: -webkit-sticky; position: sticky; top: 0;" data-template="#hbar_template"></div>
+    <div id="h-bar" style="position: -webkit-sticky; position: sticky; top: 0; z-index: 1;" data-template="#hbar_template"></div>
     <nav></nav>
     <div id="app"></div>
     <script>
@@ -42,12 +42,17 @@
             name: 'static-form',
 			repo: 'ReeceM/static-form',
 			copyCode: {
-				buttonText : 'Copy to clipboard',
-				errorText  : 'Error',
+				buttonText : 'Copy',
+				errorText  : 'Error, please try regular way :)',
 				successText: 'Copied'
 			},
             coverpage: true,
+            loadSidebar: true,
             loadNavbar : false,
+            maxLevel: 5,
+            auto2top: true,
+            subMaxLevel: 5,
+            // homepage: 'https://raw.githubusercontent.com/ReeceM/static-form/master/README.md',
             changelog : 'https://raw.githubusercontent.com/ReeceM/static-form/master/CHANGELOG.md'
         }
     </script>
@@ -81,7 +86,7 @@
         hBar.init({
             el: "#h-bar",
             DOMPurify: DOMPurify,
-            url: "https://api.github.com/repos/ReeceM/static-bar/releases",
+            url: "https://api.github.com/repos/ReeceM/static-form/releases",
             onCompleted: (e) => {
                 console.log(e)
             },

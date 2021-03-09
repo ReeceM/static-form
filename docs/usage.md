@@ -1,56 +1,8 @@
-# Handle static form submissions and other static site things in Laravel app
-
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/reecem/static-form.svg?style=flat-square)](https://packagist.org/packages/reecem/static-form)
-[![PHPUnit Tests](https://github.com/ReeceM/static-form/actions/workflows/run-tests.yml/badge.svg)](https://github.com/ReeceM/static-form/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/reecem/static-form.svg?style=flat-square)](https://packagist.org/packages/reecem/static-form)
-[![Styling](https://github.com/ReeceM/static-form/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/ReeceM/static-form/actions/workflows/php-cs-fixer.yml)
-
-[![](https://banners.beyondco.de/Static%20Form.png?theme=dark&packageManager=composer+require&packageName=reecem%2Fstatic-form&pattern=xEquals&style=style_2&description=Handle+Static+Site+forms+submissions+inside+your+Laravel+App&md=1&showWatermark=1&fontSize=100px&images=mail&widths=700&heights=400)](https://github.com/reecem/static-from#readme)
-
-Handle Static form submissions inside your Laravel app from Next.JS and Netlify or any other static site server.
-
-## Installation
-
-You can install the package via composer:
-
-```bash
-composer require reecem/static-form
-```
-
-To install the application you can do the following:
-
-```bash
-php artisan static-form:install --provider --config
-```
-
-This will install the config file and the service provider, you can though opt for each one separately or use the following:
-
-You can publish the config file with:
-```bash
-php artisan vendor:publish --provider="ReeceM\StaticForm\StaticFormServiceProvider" --tag="static-form-config"
-```
-
-You can publish the Service Provider file with:
-```bash
-php artisan vendor:publish --provider="ReeceM\StaticForm\StaticFormServiceProvider" --tag="static-form-provider"
-```
-
-You will need to add the following to the `config/app.php` file:
-
-```diff
-        /*
-         * Package Service Providers...
-         */
-+        App\Providers\StaticFormServiceProvider::class
-```
-
-You can view the docs here [https://static-form.laravelpkg.dev](https://static-form.laravelpkg.dev)
-
-## Usage
+# Usage
 
 As an overview, the usage of the current version is that you can use the packages middleware on controllers that you define, this will then use your controller to handle the request data.
 
-### Create The Token
+## Create The Token
 The first step is to generate your token, to do that you can use the console command:
 
 ```bash
@@ -70,6 +22,24 @@ To call the API endpoint, for now you can make a request to the endpoint through
 | GET         | domain.tld/api/static-form/token | This will return a 200 status and the static-form package version if the toke is found |
 | POST|PATCH  | domain.tld/api/static-form/token | A `POST` or `PATCH` request to this endpoint will create a new token |
 
+---
+
+The Laravel routes would be the following from `php artisan route:list`
+
+| Domain | Method   | URI                              | Name                            | Action                                                                          | Middleware                                                |
+|--------|----------|----------------------------------|---------------------------------|---------------------------------------------------------------------------------|-----------------------------------------------------------|
+|        | PATCH    | static-form/api/token            | static-form.token.update        | ReeceM\StaticForm\Http\Controllers\Api\ManageStaticTokenController@update       | web                                                       |
+|        |          |                                  |                                 |                                                                                 | ReeceM\StaticForm\Http\Middleware\Authorize               |
+|        | POST     | static-form/api/token            | static-form.token.update        | ReeceM\StaticForm\Http\Controllers\Api\ManageStaticTokenController@update       | web                                                       |
+|        |          |                                  |                                 |                                                                                 | ReeceM\StaticForm\Http\Middleware\Authorize               |
+|        | GET|HEAD | static-form/api/token            | static-form.token.index         | ReeceM\StaticForm\Http\Controllers\Api\ManageStaticTokenController@index        | web                                                       |
+|        |          |                                  |                                 |                                                                                 | ReeceM\StaticForm\Http\Middleware\Authorize               |
+|        | POST     | static-form/{form}               | static-form.create              | ReeceM\StaticForm\Http\Controllers\HandleStaticFormController                   | ReeceM\StaticForm\Http\Middleware\ValidStaticSiteKey      |
+|        |          |                                  |                                 |                                                                                 | Illuminate\Routing\Middleware\ThrottleRequests:30,3       |
+
+
+---
+
 The url part that says `static-form` can be changed and comes from the config key `static-form.path`
 
 The response for creating a token would be the following JSON with a 201 status:
@@ -83,7 +53,7 @@ The response for creating a token would be the following JSON with a 201 status:
 
 - [ ] Make a plugin UI, just deciding on if it should be in package or a separate snippet.
 
-### Use the Middleware
+## Use the Middleware
 
 To use the middleware, you can define a route using the config file, I do suggest that you use the API endpoint, this is as it is stateless and also would not require the CSRF token.
 
@@ -94,9 +64,11 @@ Route::group([
     'middleware' => config('static-form.middleware.forms'),
 ], function () {
     // A controller that you have created.
-    Route::post('/contact', StaticContactController::class)->name('contact.create');
+    Route::post('/static-form/contact', StaticContactController::class)->name('contact.create');
 });
 ```
+
+## Static Site side
 
 ### Submitting Forms
 
@@ -104,6 +76,7 @@ On your static site, you can have your contact form. The way of handling the for
 
 So for Vercel apps, you can create a new file under the `api` directory.
 
+#### Api Code
 For the API part of the code:
 
 ```javascript
@@ -137,7 +110,7 @@ export default async function contactus(req, res) {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
-        'X-STATIC-FORM': APP_TOKEN,
+        'X-STATIC-FORM': APP_TOKEN, /** This header is the important point here */
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         "x-requested-with": "XMLHttpRequest",
@@ -162,9 +135,11 @@ export default async function contactus(req, res) {
 }
 ```
 
+#### Frontend Code
+
 You can try a simple form layout for the frontend:
 
-```jsx
+```javascript
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 const ContactUs = () => {
@@ -234,32 +209,3 @@ const ContactUs = () => {
 export default ContactUs;
 
 ```
-
-## Testing
-
-Testing is currently a work in progress, there are some :), I am manually testing it in an actual application to make sure it works though.
-
-```bash
-composer test
-```
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
-## Credits
-
-- [ReeceM](https://github.com/ReeceM)
-- [All Contributors](../../contributors)
-
-## License
-
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
