@@ -4,6 +4,7 @@ namespace ReeceM\StaticForm;
 
 use Closure;
 use Illuminate\Http\Request;
+use ReeceM\StaticForm\Actions\CreateStaticTokenAction;
 use ReeceM\StaticForm\Events\SubmissionAccepted;
 
 class StaticForm
@@ -13,9 +14,24 @@ class StaticForm
      *
      * @var string
      */
-    const VERSION = '0.1.x';
+    const VERSION = '0.2.x';
 
+    /**
+     * Create custom handlers for the forms in the url.
+     *
+     * @var (Closure)[]
+     */
     public $customHandlers = [];
+
+    /**
+     * Creates a new token using the action.
+     *
+     * @return string
+     */
+    public function createToken()
+    {
+        return (new CreateStaticTokenAction)->create();
+    }
 
     public function handle($form, Request $request)
     {

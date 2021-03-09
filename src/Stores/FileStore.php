@@ -55,6 +55,16 @@ class FileStore implements StaticKeyStore
     }
 
     /**
+     * Determine if the file exists in your filesystem.
+     *
+     * @return bool
+     */
+    public function exists(): bool
+    {
+        return $this->filesystem->exists($this->path());
+    }
+
+    /**
      * Removes the hash from the storage completely.
      *
      * @return bool

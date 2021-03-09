@@ -5,7 +5,9 @@ namespace Tests\Feature\Http\Middleware;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use ReeceM\StaticForm\Actions\CreateStaticTokenAction;
 use ReeceM\StaticForm\StaticForm;
+use ReeceM\StaticForm\StaticFormFacade;
 use ReeceM\StaticForm\Tests\Models\User;
 use ReeceM\StaticForm\Tests\TestCase;
 
@@ -31,10 +33,15 @@ class ManageTokenApiControllerTest extends TestCase
     /** @test */
     public function token_status_can_be_checked_when_logged_in()
     {
+        StaticFormFacade::createToken();
+
         $this->actingAs(User::first())
             ->get(route('static-form.token.index'))
             ->assertOk()
-            ->assertJson(['version' => StaticForm::VERSION]);
+            ->assertJson([
+                'version' => StaticForm::VERSION,
+                'has_token' => true,
+            ]);
     }
 
     /** @test */
@@ -48,7 +55,7 @@ class ManageTokenApiControllerTest extends TestCase
     public function token_can_be_created_when_logged_in()
     {
         $this->actingAs(User::first())
-            ->patch(route('static-form.token.update'))
+            ->patch(route('static-form.token.update'), ['run_refresh' => true])
             ->assertCreated()
             ->assertJsonStructure(['plain_token', 'message']);
     }

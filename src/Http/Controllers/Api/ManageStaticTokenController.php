@@ -4,8 +4,11 @@ namespace ReeceM\StaticForm\Http\Controllers\Api;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use ReeceM\StaticForm\Actions\CreateStaticTokenAction;
+use ReeceM\StaticForm\Contracts\StaticKeyStore;
 use ReeceM\StaticForm\StaticForm;
+use ReeceM\StaticForm\StaticFormFacade;
 
 class ManageStaticTokenController
 {
@@ -16,18 +19,26 @@ class ManageStaticTokenController
      */
     public function index()
     {
-        return new JsonResponse(['version' => StaticForm::VERSION], 200);
+        return new JsonResponse([
+            'version' => StaticForm::VERSION,
+            'has_token' => app()->make(StaticKeyStore::class)->exists(),
+        ], 200);
     }
 
     /**
      * Creates a new token and returns the plain text instance.
      *
+     * @param \Illuminate\Http\Request $request
      * @return JsonResponse
      * @throws Exception
      */
-    public function update()
+    public function update(Request $request)
     {
-        $plainText = (new CreateStaticTokenAction)->create();
+        $request->validate([
+            'run_refresh' => 'required|accepted',
+        ]);
+
+        $plainText = StaticFormFacade::createToken();
 
         return new JsonResponse([
             'plain_token' => $plainText,

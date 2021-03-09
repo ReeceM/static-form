@@ -20,6 +20,13 @@ interface StaticKeyStore
     public function put(string $hash): bool;
 
     /**
+     * Determine if the token has been stored on media.
+     *
+     * @return bool
+     */
+    public function exists(): bool;
+
+    /**
      * Removes the hash from the storage completely.
      *
      * @return bool
