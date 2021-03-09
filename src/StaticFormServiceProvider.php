@@ -25,6 +25,7 @@ class StaticFormServiceProvider extends ServiceProvider
             ], 'static-form-provider');
         }
 
+        $this->bootRoutes();
         /*
          * Optional methods to load up in the future.. offering a database instance
          */

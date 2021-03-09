@@ -1,5 +1,6 @@
 <?php
 
+use ReeceM\StaticForm\Http\Middleware\Authorize;
 use ReeceM\StaticForm\Http\Middleware\ValidStaticSiteKey;
 
 return [
