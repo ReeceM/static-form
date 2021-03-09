@@ -10,7 +10,7 @@ class FileStore implements StaticKeyStore
     /**
      * The filesystem contract/instance
      *
-     * @var \Illuminate\Contracts\Filesystem\Filesystem $filesystem
+     * @var \Illuminate\Contracts\Filesystem\Filesystem
      */
     protected $filesystem;
 
