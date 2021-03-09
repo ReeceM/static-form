@@ -48,10 +48,15 @@ class ValidStaticSiteKey
 
         return tap(
             hash_equals($token, hash('sha256', $header)),
-            function ($result) {
-                if ($result === true) {
-                    ValidationSuccess::dispatch([]);
-                }
+            function ($result) use ($request) {
+                $payload = [
+                    'result' => $result,
+                    'request' => $request,
+                ];
+
+                $result
+                    ? ValidationSuccess::dispatch($payload)
+                    : ValidationFailed::dispatch($payload);
             }
         );
     }
