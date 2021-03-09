@@ -41,7 +41,8 @@ class ValidStaticSiteKey
      */
     private function validToken($request)
     {
-        $token = app(StaticKeyStore::class)->get();
+
+        $token = app()->make(StaticKeyStore::class)->get();
 
         $header = $request->header(config('static-form.header'));
 

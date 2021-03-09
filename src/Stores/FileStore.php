@@ -7,12 +7,17 @@ use ReeceM\StaticForm\Contracts\StaticKeyStore;
 
 class FileStore implements StaticKeyStore
 {
+    /**
+     * The filesystem contract/instance
+     *
+     * @var \Illuminate\Contracts\Filesystem\Filesystem $filesystem
+     */
     protected $filesystem;
 
     /**
      * Create a new local storage instance.
      *
-     * @param \Illuminate\Contracts\Filesystem\ $filesystem
+     * @param \Illuminate\Contracts\Filesystem\Filesystem $filesystem
      * @return void
      */
     public function __construct(Filesystem $filesystem)
@@ -40,7 +45,7 @@ class FileStore implements StaticKeyStore
      * Sets the static site key hash
      *
      * @param string $hash
-     * @return void
+     * @return bool
      */
     public function put(string $hash): bool
     {

@@ -35,7 +35,7 @@ class StaticForm
      *
      * @param string $form
      * @param  \Closure  $callback
-     * @return void
+     * @return \ReeceM\StaticForm\StaticForm
      */
     public function define(string $form, Closure $callback)
     {
