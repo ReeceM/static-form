@@ -5,7 +5,6 @@ namespace Tests\Feature\Http\Middleware;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use ReeceM\StaticForm\Actions\CreateStaticTokenAction;
 use ReeceM\StaticForm\StaticForm;
 use ReeceM\StaticForm\StaticFormFacade;
 use ReeceM\StaticForm\Tests\Models\User;

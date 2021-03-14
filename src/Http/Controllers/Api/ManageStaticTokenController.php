@@ -5,7 +5,6 @@ namespace ReeceM\StaticForm\Http\Controllers\Api;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use ReeceM\StaticForm\Actions\CreateStaticTokenAction;
 use ReeceM\StaticForm\Contracts\StaticKeyStore;
 use ReeceM\StaticForm\StaticForm;
 use ReeceM\StaticForm\StaticFormFacade;
