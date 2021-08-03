@@ -12,32 +12,68 @@
     <!-- Primary Meta Tags -->
     <title>Laravel Static Form handles forms from static websites</title>
     <meta name="title" content="Laravel Static Form handles forms from static websites">
-    <meta name="description" content="Static Form helps you to accept static website forms submitted to your Laravel application using API routes and tokens">
+    <meta name="description"
+        content="Static Form helps you to accept static website forms submitted to your Laravel application using API routes and tokens">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://reecem.github.io/static-form">
     <meta property="og:title" content="Laravel Static Form handles forms from static websites">
-    <meta property="og:description" content="Static Form helps you to accept static website forms submitted to your Laravel application using API routes and tokens">
-    <meta property="og:image" content="https://banners.beyondco.de/Static%20Form.png?theme=dark&packageManager=composer+require&packageName=reecem%2Fstatic-form&pattern=xEquals&style=style_2&description=Handle+Static+Site+forms+submissions+inside+your+Laravel+App&md=1&showWatermark=1&fontSize=100px&images=mail&widths=700&heights=400">
+    <meta property="og:description"
+        content="Static Form helps you to accept static website forms submitted to your Laravel application using API routes and tokens">
+    <meta property="og:image"
+        content="https://banners.beyondco.de/Static%20Form.png?theme=dark&packageManager=composer+require&packageName=reecem%2Fstatic-form&pattern=xEquals&style=style_2&description=Handle+Static+Site+forms+submissions+inside+your+Laravel+App&md=1&showWatermark=1&fontSize=100px&images=mail&widths=700&heights=400">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://reecem.github.io/static-form">
     <meta property="twitter:title" content="Laravel Static Form handles forms from static websites">
-    <meta property="twitter:description" content="Static Form helps you to accept static website forms submitted to your Laravel application using API routes and tokens">
-    <meta property="twitter:image" content="https://banners.beyondco.de/Static%20Form.png?theme=dark&packageManager=composer+require&packageName=reecem%2Fstatic-form&pattern=xEquals&style=style_2&description=Handle+Static+Site+forms+submissions+inside+your+Laravel+App&md=1&showWatermark=1&fontSize=100px&images=mail&widths=700&heights=400">
+    <meta property="twitter:description"
+        content="Static Form helps you to accept static website forms submitted to your Laravel application using API routes and tokens">
+    <meta property="twitter:image"
+        content="https://banners.beyondco.de/Static%20Form.png?theme=dark&packageManager=composer+require&packageName=reecem%2Fstatic-form&pattern=xEquals&style=style_2&description=Handle+Static+Site+forms+submissions+inside+your+Laravel+App&md=1&showWatermark=1&fontSize=100px&images=mail&widths=700&heights=400">
 
-    <link rel="stylesheet" href="./css/extra.css"/>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-changelog-plugin@latest/dist/style.css"/>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="./css/extra.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-changelog-plugin@latest/dist/style.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <style>
+        .pkg-badge {
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            display: flex;
+            padding: 0.3rem;
+            justify-content: flex-end;
+        }
+
+        .pkg-badge svg {
+            width: 170px;
+        }
+
+        .pkg-badge img {
+            width: 170px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .pkg-badge svg {
+                width: 100px;
+            }
+
+            .pkg-badge img {
+                width: 100px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div id="h-bar" style="position: -webkit-sticky; position: sticky; top: 0; z-index: 1;" data-template="#hbar_template"></div>
+    <div id="h-bar" style="position: -webkit-sticky; position: sticky; top: 0; z-index: 1;"
+        data-template="#hbar_template"></div>
     <nav></nav>
     <div id="app"></div>
-    <div style="position: fixed; bottom: 0px; left: 0px; width: 100%; display: flex; padding: 0.3rem; justify-content: flex-end;">
+    <div
+        style="position: fixed; bottom: 0px; left: 0px; width: 100%; display: flex; padding: 0.3rem; justify-content: flex-end;">
         <a href="https://packagepages.dev" rel="noopener noreferer">
             <img src="./laravel_packages.png" width="170" alt="Domain Proudly Supplied by Package Packages">
         </a>
@@ -45,35 +81,39 @@
     <script>
         window.$docsify = {
             name: 'static-form',
-			repo: 'ReeceM/static-form',
-			copyCode: {
-				buttonText : 'Copy',
-				errorText  : 'Error, please try regular way :)',
-				successText: 'Copied'
-			},
+            repo: 'ReeceM/static-form',
+            copyCode: {
+                buttonText: 'Copy',
+                errorText: 'Error, please try regular way :)',
+                successText: 'Copied'
+            },
             coverpage: true,
             loadSidebar: true,
-            loadNavbar : false,
+            loadNavbar: false,
             maxLevel: 5,
             auto2top: true,
             subMaxLevel: 5,
             // homepage: 'https://raw.githubusercontent.com/ReeceM/static-form/master/README.md',
-            changelog : 'https://raw.githubusercontent.com/ReeceM/static-form/master/CHANGELOG.md'
+            changelog: 'https://raw.githubusercontent.com/ReeceM/static-form/master/CHANGELOG.md'
         }
+
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify-changelog-plugin@latest/dist/index.js"></script>
-	<script src="//unpkg.com/docsify-copy-code@2"></script>
+    <script src="//unpkg.com/docsify-copy-code@2"></script>
     <script src="//cdn.jsdelivr.net/npm/dompurify@2.0.11/dist/purify.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/@reecem/h-bar@next/dist/hBar.min.js"></script>
 
     <template id="hbar_template">
-        <div class="flex w-full flex-col md:flex-row text-sm py-2 md:px-20 px-1 items-center justify-between bg-indigo-400 text-indigo-900">
+        <div
+            class="flex w-full flex-col md:flex-row text-sm py-2 md:px-20 px-1 items-center justify-between bg-indigo-400 text-indigo-900">
             <div class="flex items-center mb-1 md:mb-0">
-                <span class="px-2 mx-2 leading-relaxed tracking-wider uppercase font-semibold rounded-full text-xs bg-indigo-100 text-indigo-900 shadow">
+                <span
+                    class="px-2 mx-2 leading-relaxed tracking-wider uppercase font-semibold rounded-full text-xs bg-indigo-100 text-indigo-900 shadow">
                     Release
                 </span>
-                <a class="hover:underline inline-flex items-center hover:text-indigo-100" href="{% link %}" target="_blank">
+                <a class="hover:underline inline-flex items-center hover:text-indigo-100" href="{% link %}"
+                    target="_blank">
                     {% title %}
                     <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
@@ -83,7 +123,8 @@
                 </a>
             </div>
             <div class="flex items-center">
-                <a class="mx-5 cursor-pointer hover:underline hover:text-indigo-100" href="https://twitter.com/iexistin3d">@iexistin3d</a>
+                <a class="mx-5 cursor-pointer hover:underline hover:text-indigo-100"
+                    href="https://twitter.com/iexistin3d">@iexistin3d</a>
             </div>
         </div>
     </template>
@@ -96,7 +137,10 @@
                 console.log(e)
             },
             parser: (data) => {
-                const {name, html_url} = data[0];
+                const {
+                    name,
+                    html_url
+                } = data[0];
                 return {
                     title: `Latest version available ${name}`,
                     link: html_url + '?ref=hbar_docs'
@@ -104,6 +148,7 @@
             },
         })
         hBar.fetch()
+
     </script>
 </body>
 
