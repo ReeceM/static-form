@@ -5,6 +5,10 @@ All notable changes to `static-form` will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.1] - 2022-08-8
+### Fixed
+- Error in the CONFIG variables.
+
 ## [0.2.0] - 2021-03-09
 
 ### Fixed
@@ -21,6 +25,7 @@ All notable changes to `static-form` will be documented in this file.
 - Basic Middleware
 - Generate tokens and view status
 
-[Unreleased]: https://github.com/reecem/static-form/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/reecem/static-form/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/reecem/static-form/tag/v0.2.1
 [0.2.0]: https://github.com/reecem/static-form/tag/v0.2.0
 [0.1.0]: https://github.com/reecem/static-form/tag/v0.1.0
