@@ -19,7 +19,7 @@ return [
     | This is the header that has the token that is sent with the request.
     |
     */
-    'header' => env('STATIC_FROM_HEADER', 'X-STATIC-FORM'),
+    'header' => env('STATIC_FORM_HEADER', 'X-STATIC-FORM'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     | All requests that have the route group attached will be under here.
     |
     */
-    'path' => env('STATIC_FROM_PATH', 'static-form'),
+    'path' => env('STATIC_FORM_PATH', 'static-form'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
     'storage' => [
-        'disk' => env('STATIC_FROM_KEY_DISC', 'local'),
+        'disk' => env('STATIC_FORM_KEY_DISC', 'local'),
         'path' => env('STATIC_FORM_KEY_PATH', ''),
     ],
 
