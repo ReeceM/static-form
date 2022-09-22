@@ -44,7 +44,7 @@ You will need to add the following to the `config/app.php` file:
 +        App\Providers\StaticFormServiceProvider::class
 ```
 
-You can view the docs here [https://static-form.laravelpkg.dev](https://static-form.laravelpkg.dev)
+You can view the docs here [https://static-form.pkgpg.dev](https://static-form.pkgpg.dev)
 
 ## Usage
 
